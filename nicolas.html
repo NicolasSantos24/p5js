@@ -1,0 +1,47 @@
+let corCirculo;
+let corFundo;
+let posicaoHorizontal; // x
+let posicaoVertical;   // y
+let tamanho = 50;      // tamanho do círculo
+
+function setup() {
+  createCanvas(400, 400);
+  corFundo = color(100, 0, 0);
+  corCirculo = color(random(0, 255), random(0, 255), random(0, 255));
+  posicaoHorizontal = width / 2; // Centralizando o círculo
+  posicaoVertical = height / 2;  // Centralizando o círculo
+}
+
+function draw() {
+  background(corFundo); // Usar a cor de fundo dinâmica
+  fill(corCirculo);
+  circle(posicaoHorizontal, posicaoVertical, tamanho);
+
+  moverCirculo();
+  mudarCor();
+}
+
+function moverCirculo() {
+  // Movimentar o círculo na horizontal
+  if (mouseX < posicaoHorizontal) {
+    posicaoHorizontal -= 1;
+  } else if (mouseX > posicaoHorizontal) {
+    posicaoHorizontal += 1;
+  }
+
+  // Movimentar o círculo na vertical
+  if (mouseY < posicaoVertical) {
+    posicaoVertical -= 1;
+  } else if (mouseY > posicaoVertical) {
+    posicaoVertical += 1;
+  }
+}
+
+function mudarCor() {
+  // Mudar a cor do círculo e do fundo quando o mouse é pressionado
+  if (mouseIsPressed) {
+    corCirculo = color(random(0, 255), random(0, 255), random(0, 255), random(0, 100));
+    corFundo = color(random(0, 255), random(0, 255), random(0, 255));
+    tamanho = random(30, 70); // Tamanho aleatório entre 30 e 70
+  }
+}
